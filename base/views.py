@@ -74,8 +74,8 @@ def handle_whatsapp_message(request):
         # Command: Show list
         elif 'show list' in incoming_msg:
             shopping_items = ShoppingList.objects.all()
-            items = [f" - x{item.quantity} {item.item}" for item in shopping_items]
-            list_message = "".join(items) if items else "Your shopping list is empty."
+            items = [f"- x{item.quantity} {item.item}" for item in shopping_items]
+            list_message = "\n".join(items) if items else "Your shopping list is empty."
             response.message(f"Here is your shopping list:\n{list_message}")
         
         # Command: Delete item
