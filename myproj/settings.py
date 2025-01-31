@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +24,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ry4^da0dkq&2&k!-opm#1bh#3=q7!(*lc^6ndt_*vb8en6dojk'
+SECRET_KEY = os.getenv('SECRET_KEY') 
+
+if not SECRET_KEY:
+    raise ValueError("The SECRET_KEY environment variable is not set.") 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost", 
+    "2ae7-147-235-196-31.ngrok-free.app",
+]
 
 
 # Application definition
@@ -37,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'base',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +133,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TWILIO_ACCOUNT_SID = os.getenv('ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.getenv('AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = 'whatsapp:+1415XXXXXXX'  # Replace with your Twilio WhatsApp number**
