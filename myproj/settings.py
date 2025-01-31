@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost", 
     "1677-147-235-196-31.ngrok-free.app",
+    "https://shoppingbot.onrender.com",
 ]
 
 

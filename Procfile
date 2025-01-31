@@ -1,1 +1,1 @@
-web: gunicorn shoppingbot.wsgi
+gunicorn myproj.wsgi:application
